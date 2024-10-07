@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dudlht1ekt6tq"]
+[gd_scene load_steps=10 format=3 uid="uid://dudlht1ekt6tq"]
 
 [ext_resource type="Texture2D" uid="uid://bpjmw7wumnh7w" path="res://assets/sprites/tank_body.png" id="1_uv4y0"]
+[ext_resource type="Script" path="res://scenes/tank.gd" id="1_xd3l6"]
 [ext_resource type="PackedScene" uid="uid://hi04e1chyrna" path="res://scenes/weapon.tscn" id="2_i5ejy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgrui"]
-size = Vector2(28, 26)
 
 [sub_resource type="Animation" id="Animation_d6b6h"]
 resource_name = "Move"
@@ -61,20 +59,27 @@ _data = {
 "idle": SubResource("Animation_mqcr1")
 }
 
-[node name="Tank" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgrui"]
+size = Vector2(28, 26)
 
-[node name="BodySprite" type="Sprite2D" parent="."]
-position = Vector2(16, 16)
-texture = ExtResource("1_uv4y0")
-hframes = 2
+[sub_resource type="GDScript" id="GDScript_h3orl"]
 
-[node name="TankShape" type="CollisionShape2D" parent="."]
-position = Vector2(16, 16)
-shape = SubResource("RectangleShape2D_lgrui")
-
-[node name="Weapon" parent="." instance=ExtResource("2_i5ejy")]
+[node name="Tank" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+position = Vector2(17, 16)
+script = ExtResource("1_xd3l6")
+weapon = NodePath("Weapon")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k0e05")
 }
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uv4y0")
+hframes = 2
+
+[node name="TankShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lgrui")
+
+[node name="Weapon" parent="." instance=ExtResource("2_i5ejy")]
+script = SubResource("GDScript_h3orl")
