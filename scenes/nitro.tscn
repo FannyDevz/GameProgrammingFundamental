@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://chlktxrfnrsdy"]
+
+[ext_resource type="Script" path="res://scenes/nitro.gd" id="1_1uvvr"]
+[ext_resource type="Texture2D" uid="uid://swuqp1i477uf" path="res://assets/sprites/nitro.png" id="1_7ingd"]
+
+[sub_resource type="Animation" id="Animation_p4fvf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NitroSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yjunc"]
+resource_name = "active"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NitroSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_wennq"]
+resource_name = "deactive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NitroSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sal66"]
+_data = {
+"RESET": SubResource("Animation_p4fvf"),
+"active": SubResource("Animation_yjunc"),
+"deactive": SubResource("Animation_wennq")
+}
+
+[node name="Nitro" type="Node2D"]
+script = ExtResource("1_1uvvr")
+
+[node name="NitroSprite" type="Sprite2D" parent="."]
+position = Vector2(-22, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7ingd")
+hframes = 3
+
+[node name="NitroAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sal66")
+}

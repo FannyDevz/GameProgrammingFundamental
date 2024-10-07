@@ -3,11 +3,12 @@ extends CharacterBody2D
 const SPEED = 64.0
 const TURN_SPEED = 2
 const ROTATE_SPEED = 20
-
+const NITRO_SPEED = 130
 #@onready var weapon: Weapon = $Weapon
 
-@export var weapon: Node2D
-#@onready var weapon: Weapon = $Weapon as Weapon
+#@export var weapon: Node2D
+@onready var weapon: Weapon = $Weapon as Weapon
+@onready var nitro: Nitro = $Nitro as Nitro
 
 @onready var body_sprite := $BodySprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -20,11 +21,20 @@ func _physics_process(delta: float):
 	if input_direction.x != 0:
 		direction = direction.rotated(input_direction.x * (PI / 2) * TURN_SPEED * delta)
 		rotation = direction.angle()
+	
+	var current_speed = SPEED
 	if input_direction.y != 0:
-		animation_player.play("Move")
-		velocity = lerp(velocity, (direction.normalized() * input_direction.y) * SPEED, SPEED * delta)
+		if Input.is_action_pressed("nitro_active"):
+			current_speed = NITRO_SPEED
+			nitro.active()
+		else:
+			nitro.deactive()
+		animation_player.play("Move")	
+		velocity = direction.normalized() * input_direction.y * current_speed
+		#velocity = lerp(velocity, (direction.normalized() * input_direction.y) * current_speed, current_speed * delta)	
 	else :
 		velocity = Vector2.ZERO
+		nitro.deactive()
 		animation_player.play('idle')
 	
 	move_and_slide()
@@ -34,5 +44,4 @@ func _physics_process(delta: float):
 
 func _input(event):
 	if event.is_action_pressed("weapon_fire"):
-		print("fire")
-		#weapon.fire()
+		weapon.fire()

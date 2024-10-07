@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bpjmw7wumnh7w" path="res://assets/sprites/tank_body.png" id="1_uv4y0"]
 [ext_resource type="Script" path="res://scenes/tank.gd" id="1_xd3l6"]
-[ext_resource type="PackedScene" uid="uid://hi04e1chyrna" path="res://scenes/weapon.tscn" id="2_i5ejy"]
+[ext_resource type="PackedScene" uid="uid://chlktxrfnrsdy" path="res://scenes/nitro.tscn" id="2_0pbm4"]
+[ext_resource type="PackedScene" uid="uid://cbd27dwq76nuk" path="res://scenes/weapon.tscn" id="2_i5ejy"]
 
 [sub_resource type="Animation" id="Animation_d6b6h"]
 resource_name = "Move"
@@ -62,17 +63,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgrui"]
 size = Vector2(28, 26)
 
-[sub_resource type="GDScript" id="GDScript_h3orl"]
-
-[node name="Tank" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="Tank" type="CharacterBody2D"]
 position = Vector2(17, 16)
 script = ExtResource("1_xd3l6")
-weapon = NodePath("Weapon")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k0e05")
 }
+
+[node name="Nitro" parent="." instance=ExtResource("2_0pbm4")]
 
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_uv4y0")
@@ -82,4 +82,3 @@ hframes = 2
 shape = SubResource("RectangleShape2D_lgrui")
 
 [node name="Weapon" parent="." instance=ExtResource("2_i5ejy")]
-script = SubResource("GDScript_h3orl")
