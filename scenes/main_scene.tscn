@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://p1i47qt0bx1n"]
+
+[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_aqodb"]
+[ext_resource type="PackedScene" uid="uid://dudlht1ekt6tq" path="res://scenes/tank.tscn" id="2_623uy"]
+[ext_resource type="Script" path="res://scenes/hp.gd" id="3_ol67s"]
+[ext_resource type="Script" path="res://scenes/sp.gd" id="4_cqcxu"]
+[ext_resource type="Texture2D" uid="uid://clrpd3tb6ypwy" path="res://assets/background/grass.png" id="5_8sx56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_som12"]
+size = Vector2(969.25, 548.75)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_aqodb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(484.375, 273.625)
+shape = SubResource("RectangleShape2D_som12")
+
+[node name="Tank" parent="." instance=ExtResource("2_623uy")]
+position = Vector2(481, 278)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health" type="Label" parent="CanvasLayer"]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 29.0
+text = "Health :"
+
+[node name="HP" type="Label" parent="CanvasLayer/Health"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 1.0
+offset_right = 103.0
+offset_bottom = 24.0
+text = "0"
+script = ExtResource("3_ol67s")
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 105.0
+offset_top = 6.0
+offset_right = 157.0
+offset_bottom = 29.0
+text = "Score :"
+
+[node name="SP" type="Label" parent="CanvasLayer/Score"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 1.0
+offset_right = 96.0
+offset_bottom = 24.0
+text = "0"
+script = ExtResource("4_cqcxu")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(488, 271)
+scale = Vector2(1.07037, 1.07037)
+texture = ExtResource("5_8sx56")
+
+[connection signal="child_entered_tree" from="." to="CanvasLayer/Score/SP" method="_on_main_scene_child_entered_tree"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="death_signal" from="Tank" to="CanvasLayer/Score/SP" method="_on_tank_death_signal"]
+[connection signal="health_signal" from="Tank" to="CanvasLayer/Health/HP" method="_on_tank_health_signal"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

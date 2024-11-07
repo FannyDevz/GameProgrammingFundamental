@@ -1,12 +1,16 @@
 extends CharacterBody2D
 
+const MENU = preload("res://scenes/menu.tscn")
 const SPEED = 64.0
 const TURN_SPEED = 2
 const ROTATE_SPEED = 20
 const NITRO_SPEED = 130
-#@onready var weapon: Weapon = $Weapon
+var HEALTH:int = 5
+var HEALTH_NOW:int = HEALTH
 
-#@export var weapon: Node2D
+signal health_signal(health:int, healthnow:int)
+signal death_signal(isTrue:bool)
+
 @onready var weapon: Weapon = $Weapon as Weapon
 @onready var nitro: Nitro = $Nitro as Nitro
 
@@ -15,6 +19,9 @@ const NITRO_SPEED = 130
 @onready var tank_shape: CollisionShape2D = $TankShape
 
 var direction := Vector2.RIGHT
+
+func _ready() -> void:
+	emit_signal("health_signal", HEALTH , HEALTH_NOW)
 
 func _physics_process(delta: float):
 	var input_direction := Input.get_vector("turn_left", "turn_right", "move_backward", "move_forward")
@@ -39,9 +46,21 @@ func _physics_process(delta: float):
 	
 	move_and_slide()
 	#
-	var weapon_rotate_direction := Input.get_axis("rotate_weapon_left","rotate_weapon_right")
-	weapon.rotation_degrees += (weapon_rotate_direction * ROTATE_SPEED * delta * PI)
+	var mouse_position = get_global_mouse_position() 
+	var direction_to_mouse = (mouse_position - weapon.global_position).normalized() 
+	weapon.global_rotation = direction_to_mouse.angle()  
 
 func _input(event):
 	if event.is_action_pressed("weapon_fire"):
 		weapon.fire()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group('enemy-bullet'):
+		HEALTH_NOW -= area.DAMAGE 
+		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
+		area.queue_free()
+	
+	if HEALTH_NOW <= 0:
+		emit_signal("death_signal" ,true)
+		get_tree().call_deferred('change_scene_to_packed' , MENU)

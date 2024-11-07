@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyyq0sd5u6iq4"]
+
+[ext_resource type="Texture2D" uid="uid://bqqefoda5e2wx" path="res://assets/sprites/enemy_body.png" id="1_okxpn"]
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_qfxyu"]
+[ext_resource type="PackedScene" uid="uid://bsjirm3kc8s08" path="res://scenes/weapon_enemy.tscn" id="3_t4xxr"]
+
+[sub_resource type="Animation" id="Animation_cv2lh"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_vs3i1"]
+resource_name = "Move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hk86w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p3yl"]
+_data = {
+"Idle": SubResource("Animation_cv2lh"),
+"Move": SubResource("Animation_vs3i1"),
+"RESET": SubResource("Animation_hk86w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4udy"]
+size = Vector2(30, 28)
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_qfxyu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3p3yl")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_e4udy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.18
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+rotation = -1.5708
+texture = ExtResource("1_okxpn")
+hframes = 2
+frame = 1
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="Weapon_Enemy" parent="." instance=ExtResource("3_t4xxr")]
+position = Vector2(16, 16)
+rotation = 1.56547
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

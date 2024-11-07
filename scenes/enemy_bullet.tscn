@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cap7p3memu25t"]
+[gd_scene load_steps=7 format=3 uid="uid://cqwns7avvtjn3"]
 
-[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_p5byo"]
-[ext_resource type="Texture2D" uid="uid://b2jwfv3jfc0fr" path="res://assets/sprites/bullet.png" id="2_xry8l"]
+[ext_resource type="Script" path="res://scenes/enemy_bullet.gd" id="1_ih72b"]
+[ext_resource type="Texture2D" uid="uid://b2jwfv3jfc0fr" path="res://assets/sprites/bullet.png" id="2_rujjp"]
 
 [sub_resource type="Animation" id="Animation_rxrum"]
 length = 0.001
@@ -45,7 +45,7 @@ _data = {
 size = Vector2(3, 3)
 
 [node name="Bullet" type="Area2D"]
-script = ExtResource("1_p5byo")
+script = ExtResource("1_ih72b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -57,7 +57,7 @@ shape = SubResource("RectangleShape2D_qst1b")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
 position = Vector2(108, 8)
-texture = ExtResource("2_xry8l")
+texture = ExtResource("2_rujjp")
 offset = Vector2(-108, -8)
 hframes = 3
 
