@@ -7,6 +7,7 @@ const ROTATE_SPEED = 20
 const NITRO_SPEED = 130
 var HEALTH:int = 5
 var HEALTH_NOW:int = HEALTH
+var cooldown: bool = false
 
 signal health_signal(health:int, healthnow:int)
 signal death_signal(isTrue:bool)
@@ -17,13 +18,19 @@ signal death_signal(isTrue:bool)
 @onready var body_sprite := $BodySprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var tank_shape: CollisionShape2D = $TankShape
+@onready var cooldown_timer: Timer = $CoolDown
 
 var direction := Vector2.RIGHT
 
 func _ready() -> void:
 	emit_signal("health_signal", HEALTH , HEALTH_NOW)
+	#start_cooldown()
+	
 
 func _physics_process(delta: float):
+	if cooldown:	
+		animation_player.play("cooldown")	
+		
 	var input_direction := Input.get_vector("turn_left", "turn_right", "move_backward", "move_forward")
 	if input_direction.x != 0:
 		direction = direction.rotated(input_direction.x * (PI / 2) * TURN_SPEED * delta)
@@ -36,13 +43,15 @@ func _physics_process(delta: float):
 			nitro.active()
 		else:
 			nitro.deactive()
-		animation_player.play("Move")	
+		if !cooldown:
+			animation_player.play("Move")	
 		velocity = direction.normalized() * input_direction.y * current_speed
 		#velocity = lerp(velocity, (direction.normalized() * input_direction.y) * current_speed, current_speed * delta)	
 	else :
 		velocity = Vector2.ZERO
-		nitro.deactive()
-		animation_player.play('idle')
+		nitro.deactive()	
+		if !cooldown:
+			animation_player.play('idle')
 	
 	move_and_slide()
 	#
@@ -56,11 +65,32 @@ func _input(event):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if cooldown:
+		return
+		
 	if area.is_in_group('enemy-bullet'):
 		HEALTH_NOW -= area.DAMAGE 
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
 		area.queue_free()
+		start_cooldown()
+	
+	if area.is_in_group('enemy-body'):
+		HEALTH_NOW -= area.DAMAGE 
+		area.HEALTH_NOW -= area.DAMAGE
+		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
+		#area.queue_free()
+		start_cooldown()
+		print("TABRAKAN COK")
 	
 	if HEALTH_NOW <= 0:
 		emit_signal("death_signal" ,true)
 		get_tree().call_deferred('change_scene_to_packed' , MENU)
+
+func start_cooldown() -> void:
+	cooldown = true
+	cooldown_timer.start(3)  
+
+
+func _on_cool_down_timeout() -> void:
+	animation_player.play("idle")	
+	cooldown = false

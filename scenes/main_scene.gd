@@ -19,6 +19,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func spawnEnemy():
 	var enemy = ENEMY.instantiate()
+	enemy.add_to_group('enemy-body')
 
 	# Mendapatkan ukuran viewport
 	var viewport_size = get_viewport().size

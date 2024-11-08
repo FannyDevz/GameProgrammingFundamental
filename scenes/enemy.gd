@@ -11,6 +11,7 @@ const SPEED = 34.0
 var HEALTH:int = 2
 var HEALTH_NOW:int = HEALTH
 const POINT = 1 
+const DAMAGE = 1
 
 signal enemy_death
 
@@ -55,12 +56,13 @@ func _on_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('tank-bullet'):
 		print("damage", area.DAMAGE)
-		HEALTH -= area.DAMAGE
+		HEALTH_NOW -= area.DAMAGE
 		area.queue_free()
 
-	if HEALTH <= 0:
+	if HEALTH_NOW <= 0:
 		emit_signal("enemy_death", POINT)
 		queue_free()
+		
 
 func _on_timer_2_timeout() -> void:
 	set_random_direction()

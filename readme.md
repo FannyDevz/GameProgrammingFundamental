@@ -29,6 +29,25 @@ Youtube Link : [Click Here](https://www.youtube.com/watch?v=K0sIZSRtBsI&list=PLr
 Youtube Link : [Click Here](https://www.youtube.com/watch?v=njzLF3WbL4E)
 
 
+## Part 3 - Untuk UTS
+### Modifikasi
+- Penambahan Menu
+- Penambahan Map
+- Penambahan Respon Enemy (Gerakan Random)
+- Penambahan Senjata Enemy (Mengikuti Player)
+- Penambahan Enemy bisa hit player
+- Penambahan Nyawa Player = 5
+- Penambahan Nyawa Enemy = 2
+- Penambahan Point Setelah Mengalahkan Enemy
+- Penambahan HighScore
+- Penambahan Cooldown
+- Penambahan Pengaturan Jika Cooldown Tidak Bisa Diserang
+- Penambahan Pengaturan Jika Terjadi Tabrakan
+
+![part3](/doc/image/part3.png)
+![part4](/doc/image/part4.png)
+Youtube Link : [Click Here](https://youtube.com/live/b12Vrfjyqi8)
+
 ## Bug Report
 
 

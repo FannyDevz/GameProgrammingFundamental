@@ -6,7 +6,7 @@ extends Control
 func _ready() -> void:
 	label.text = str(SCORE.score)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
