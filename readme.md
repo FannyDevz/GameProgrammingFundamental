@@ -33,21 +33,31 @@ Youtube Link : [Click Here](https://www.youtube.com/watch?v=njzLF3WbL4E)
 ### Modifikasi
 - Penambahan Menu
 - Penambahan Map
-- Penambahan Respon Enemy (Gerakan Random)
-- Penambahan Senjata Enemy (Mengikuti Player)
+- Penambahan Respon Enemy 
+- Penambahan Senjata Enemy
 - Penambahan Enemy bisa hit player
 - Penambahan Nyawa Player = 5
 - Penambahan Nyawa Enemy = 2
 - Penambahan Point Setelah Mengalahkan Enemy
 - Penambahan HighScore
-- Penambahan Cooldown
-- Penambahan Pengaturan Jika Cooldown Tidak Bisa Diserang
-- Penambahan Pengaturan Jika Terjadi Tabrakan
 
 ![part3](/doc/image/part3.png)
 ![part4](/doc/image/part4.png)
 Youtube Link : [Click Here](https://youtube.com/live/b12Vrfjyqi8)
 
+## Part 3 - Untuk UAS
+### Modifikasi
+- Perubahan Respon Enemy (Gerakan Random)
+- Perubahan Senjata Enemy (Mengikuti Player)
+- Penambahan Senjata Pamungkas (Skill Cooldown 5 Detik)
+- Penambahan Visual Cooldown Senjata Pamungkas (Menggunakan Bar)
+- Perubahan Nyawa Enemy = 3
+- Penambahan Cooldown
+- Penambahan Pengaturan Jika Cooldown Tidak Bisa Diserang
+- Penambahan Pengaturan Jika Terjadi Tabrakan
+
+![part5](/doc/image/part5.png)
+Youtube Link : [Click Here](-)
 ## Bug Report
 
 
