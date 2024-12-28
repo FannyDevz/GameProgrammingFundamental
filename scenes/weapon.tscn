@@ -12,4 +12,9 @@ offset = Vector2(10, 0)
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
+[node name="ReloadRocketTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="ReloadRocketTimer" to="." method="_on_reload_rocket_timer_timeout"]

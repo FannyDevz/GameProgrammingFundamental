@@ -8,7 +8,7 @@ extends Area2D
 var player: CharacterBody2D
 
 const SPEED = 34.0
-var HEALTH:int = 2
+var HEALTH:int = 3
 var HEALTH_NOW:int = HEALTH
 const POINT = 1 
 const DAMAGE = 1
@@ -55,6 +55,11 @@ func _on_timer_timeout() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('tank-bullet'):
+		print("damage", area.DAMAGE)
+		HEALTH_NOW -= area.DAMAGE
+		area.queue_free()
+		
+	if area.is_in_group('tank-rocket'):
 		print("damage", area.DAMAGE)
 		HEALTH_NOW -= area.DAMAGE
 		area.queue_free()

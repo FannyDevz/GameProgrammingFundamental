@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 #	
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if !area.is_in_group('tank'):
-		print('cleared: ', area.name)
 		area.queue_free()
+
 
 func spawnEnemy():
 	var enemy = ENEMY.instantiate()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://p1i47qt0bx1n"]
+[gd_scene load_steps=8 format=3 uid="uid://p1i47qt0bx1n"]
 
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_aqodb"]
 [ext_resource type="PackedScene" uid="uid://dudlht1ekt6tq" path="res://scenes/tank.tscn" id="2_623uy"]
 [ext_resource type="Script" path="res://scenes/hp.gd" id="3_ol67s"]
+[ext_resource type="Script" path="res://scenes/reload_rocket.gd" id="3_ru8mm"]
 [ext_resource type="Script" path="res://scenes/sp.gd" id="4_cqcxu"]
 [ext_resource type="Texture2D" uid="uid://clrpd3tb6ypwy" path="res://assets/background/grass.png" id="5_8sx56"]
 
@@ -13,6 +14,7 @@ size = Vector2(969.25, 548.75)
 script = ExtResource("1_aqodb")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(484.375, 273.625)
@@ -26,6 +28,14 @@ wait_time = 3.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ReloadRocket" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 772.0
+offset_top = 2.0
+offset_right = 948.0
+offset_bottom = 36.0
+script = ExtResource("3_ru8mm")
+tank_instance_path = NodePath("../../Tank")
 
 [node name="Health" type="Label" parent="CanvasLayer"]
 offset_left = 7.0
@@ -58,6 +68,13 @@ offset_right = 96.0
 offset_bottom = 24.0
 text = "0"
 script = ExtResource("4_cqcxu")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 710.0
+offset_top = 7.0
+offset_right = 767.0
+offset_bottom = 37.0
+text = "Rocket"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var map_bounds = Rect2(Vector2(0, 0), Vector2(960, 540))
 const MENU = preload("res://scenes/menu.tscn")
 const SPEED = 64.0
 const TURN_SPEED = 2
@@ -17,7 +18,6 @@ signal death_signal(isTrue:bool)
 
 @onready var body_sprite := $BodySprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var tank_shape: CollisionShape2D = $TankShape
 @onready var cooldown_timer: Timer = $CoolDown
 
 var direction := Vector2.RIGHT
@@ -54,7 +54,9 @@ func _physics_process(delta: float):
 			animation_player.play('idle')
 	
 	move_and_slide()
-	#
+	global_position.x = clamp(global_position.x, map_bounds.position.x, map_bounds.position.x + map_bounds.size.x)
+	global_position.y = clamp(global_position.y, map_bounds.position.y, map_bounds.position.y + map_bounds.size.y)
+
 	var mouse_position = get_global_mouse_position() 
 	var direction_to_mouse = (mouse_position - weapon.global_position).normalized() 
 	weapon.global_rotation = direction_to_mouse.angle()  
@@ -63,6 +65,8 @@ func _input(event):
 	if event.is_action_pressed("weapon_fire"):
 		weapon.fire()
 
+	if event.is_action_pressed("weapon_rocket"):
+		weapon.rocket()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if cooldown:
@@ -80,8 +84,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
 		#area.queue_free()
 		start_cooldown()
-		print("TABRAKAN COK")
-	
+		
 	if HEALTH_NOW <= 0:
 		emit_signal("death_signal" ,true)
 		get_tree().call_deferred('change_scene_to_packed' , MENU)
