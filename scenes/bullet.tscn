@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cap7p3memu25t"]
 
-[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_p5byo"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_p5byo"]
 [ext_resource type="Texture2D" uid="uid://b2jwfv3jfc0fr" path="res://assets/sprites/bullet.png" id="2_xry8l"]
 
 [sub_resource type="Animation" id="Animation_rxrum"]

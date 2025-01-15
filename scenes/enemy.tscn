@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyyq0sd5u6iq4"]
 
 [ext_resource type="Texture2D" uid="uid://bqqefoda5e2wx" path="res://assets/sprites/enemy_body.png" id="1_okxpn"]
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_qfxyu"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_qfxyu"]
 [ext_resource type="PackedScene" uid="uid://bsjirm3kc8s08" path="res://scenes/weapon_enemy.tscn" id="3_t4xxr"]
 
 [sub_resource type="Animation" id="Animation_cv2lh"]

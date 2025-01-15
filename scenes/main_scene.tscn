@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://p1i47qt0bx1n"]
 
-[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_aqodb"]
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_aqodb"]
 [ext_resource type="PackedScene" uid="uid://dudlht1ekt6tq" path="res://scenes/tank.tscn" id="2_623uy"]
-[ext_resource type="Script" path="res://scenes/hp.gd" id="3_ol67s"]
-[ext_resource type="Script" path="res://scenes/reload_rocket.gd" id="3_ru8mm"]
-[ext_resource type="Script" path="res://scenes/sp.gd" id="4_cqcxu"]
+[ext_resource type="Script" path="res://scripts/hp.gd" id="3_ol67s"]
+[ext_resource type="Script" path="res://scripts/reload_rocket.gd" id="3_ru8mm"]
+[ext_resource type="Script" path="res://scripts/sp.gd" id="4_cqcxu"]
 [ext_resource type="Texture2D" uid="uid://clrpd3tb6ypwy" path="res://assets/background/grass.png" id="5_8sx56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_som12"]

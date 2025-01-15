@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://chlktxrfnrsdy"]
 
-[ext_resource type="Script" path="res://scenes/nitro.gd" id="1_1uvvr"]
+[ext_resource type="Script" path="res://scripts/nitro.gd" id="1_1uvvr"]
 [ext_resource type="Texture2D" uid="uid://swuqp1i477uf" path="res://assets/sprites/nitro.png" id="1_7ingd"]
 
 [sub_resource type="Animation" id="Animation_p4fvf"]

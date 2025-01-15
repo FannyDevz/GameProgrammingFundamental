@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt8l2lfu1cyqx"]
 
-[ext_resource type="Script" path="res://scenes/menu.gd" id="1_ej7gi"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ej7gi"]
 [ext_resource type="Texture2D" uid="uid://ttljxfygebhj" path="res://assets/background/background.webp" id="1_nluyi"]
 [ext_resource type="FontFile" uid="uid://dsdrsbewybfoe" path="res://fonts/GrapeSoda.ttf" id="3_vk7hx"]
 

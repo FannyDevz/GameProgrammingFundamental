@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dudlht1ekt6tq"]
 
 [ext_resource type="Texture2D" uid="uid://bpjmw7wumnh7w" path="res://assets/sprites/tank_body.png" id="1_uv4y0"]
-[ext_resource type="Script" path="res://scenes/tank.gd" id="1_xd3l6"]
+[ext_resource type="Script" path="res://scripts/tank.gd" id="1_xd3l6"]
 [ext_resource type="PackedScene" uid="uid://chlktxrfnrsdy" path="res://scenes/nitro.tscn" id="2_0pbm4"]
 [ext_resource type="PackedScene" uid="uid://cbd27dwq76nuk" path="res://scenes/weapon.tscn" id="2_i5ejy"]
 
