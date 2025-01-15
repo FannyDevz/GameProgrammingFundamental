@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbd27dwq76nuk"]
 
-[ext_resource type="Texture2D" uid="uid://d1ci7g78aeqqc" path="res://assets/sprites/tank_weapon.png" id="1_agkt6"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="1_rriur"]
+[ext_resource type="Texture2D" uid="uid://b0pavqxt0cril" path="res://assets/kenney_top-down-tanks-redux/PNG/Default size/tankSand_barrel2.png" id="2_hifs0"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_rriur")
 
 [node name="Weapon" type="Sprite2D" parent="."]
-texture = ExtResource("1_agkt6")
-offset = Vector2(10, 0)
+rotation = 1.5708
+texture = ExtResource("2_hifs0")
+offset = Vector2(0, -8)
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

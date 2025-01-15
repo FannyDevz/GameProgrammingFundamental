@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bpjmw7wumnh7w" path="res://assets/sprites/tank_body.png" id="1_uv4y0"]
 [ext_resource type="Script" path="res://scripts/tank.gd" id="1_xd3l6"]
 [ext_resource type="PackedScene" uid="uid://chlktxrfnrsdy" path="res://scenes/nitro.tscn" id="2_0pbm4"]
-[ext_resource type="PackedScene" uid="uid://cbd27dwq76nuk" path="res://scenes/weapon.tscn" id="2_i5ejy"]
+[ext_resource type="PackedScene" uid="uid://cbd27dwq76nuk" path="res://scenes/weapon.tscn" id="4_5p3ok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgrui"]
 size = Vector2(28, 26)
@@ -105,7 +105,7 @@ hframes = 3
 [node name="TankShape" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_lgrui")
 
-[node name="Weapon" parent="." instance=ExtResource("2_i5ejy")]
+[node name="Weapon" parent="." instance=ExtResource("4_5p3ok")]
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 3.0
