@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite := $Sprite2D
 @onready var direction_change_timer: Timer = $Timer2
 @onready var weapon: Weapon_Enemy = $Weapon_Enemy as Weapon_Enemy
@@ -35,7 +35,7 @@ func set_direction_to_center():
 	direction = (center_position - position).normalized()
 	
 func _process(delta: float) -> void:
-	animation_player.play('Move')
+	#animation_player.play('Move')
 
 	position += direction * SPEED * delta
 	if direction != Vector2.ZERO: 
