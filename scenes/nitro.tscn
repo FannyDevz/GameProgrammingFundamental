@@ -61,7 +61,7 @@ _data = {
 script = ExtResource("1_1uvvr")
 
 [node name="NitroSprite" type="Sprite2D" parent="."]
-position = Vector2(-22, 1)
+position = Vector2(-37, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_7ingd")
 hframes = 3

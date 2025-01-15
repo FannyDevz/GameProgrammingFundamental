@@ -17,7 +17,8 @@ signal death_signal(isTrue:bool)
 @onready var nitro: Nitro = $Nitro as Nitro
 
 @onready var body_sprite := $BodySprite
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var demage_flash: AnimationPlayer = $BodySprite/DemageFlash
 @onready var cooldown_timer: Timer = $CoolDown
 
 var direction := Vector2.RIGHT
@@ -29,7 +30,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float):
 	if cooldown:	
-		animation_player.play("cooldown")	
+		#animation_player.play("cooldown")
+		demage_flash.play("flash")
 		
 	var input_direction := Input.get_vector("turn_left", "turn_right", "move_backward", "move_forward")
 	if input_direction.x != 0:
@@ -43,15 +45,15 @@ func _physics_process(delta: float):
 			nitro.active()
 		else:
 			nitro.deactive()
-		if !cooldown:
-			animation_player.play("Move")	
+		#if !cooldown:
+			#animation_player.play("Move")	
 		velocity = direction.normalized() * input_direction.y * current_speed
 		#velocity = lerp(velocity, (direction.normalized() * input_direction.y) * current_speed, current_speed * delta)	
 	else :
 		velocity = Vector2.ZERO
 		nitro.deactive()	
-		if !cooldown:
-			animation_player.play('idle')
+		#if !cooldown:
+			#animation_player.play('idle')
 	
 	move_and_slide()
 	global_position.x = clamp(global_position.x, map_bounds.position.x, map_bounds.position.x + map_bounds.size.x)
@@ -95,5 +97,5 @@ func start_cooldown() -> void:
 
 
 func _on_cool_down_timeout() -> void:
-	animation_player.play("idle")	
+	#animation_player.play("idle")	
 	cooldown = false
