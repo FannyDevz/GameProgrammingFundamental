@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt8l2lfu1cyqx"]
+[gd_scene load_steps=9 format=3 uid="uid://dt8l2lfu1cyqx"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_ej7gi"]
 [ext_resource type="Texture2D" uid="uid://ttljxfygebhj" path="res://assets/background/background.webp" id="1_nluyi"]
+[ext_resource type="FontFile" uid="uid://dsdrsbewybfoe" path="res://fonts/GrapeSoda.ttf" id="3_vk7hx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xa6rm"]
+texture = ExtResource("1_nluyi")
+modulate_color = Color(0.509286, 0.509286, 0.509286, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fh21t"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 0.784314)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aof6o"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xp5c"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 0.784314)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2u2c"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +44,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ej7gi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xa6rm")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -41,16 +83,28 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 5
-theme_override_font_sizes/font_size = 50
-text = "Game Tank Tank An"
+theme_override_fonts/font = ExtResource("3_vk7hx")
+theme_override_font_sizes/font_size = 100
+text = "GAME
+Tank-Tank an"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_fh21t")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aof6o")
+text = "START"
 
 [node name="Button2" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Exit"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_7xp5c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a2u2c")
+text = "EXIT"
 
 [node name="CenterContainer2" type="CenterContainer" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -58,7 +112,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="BoxContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 text = "
-High Score :"
+HIGH SCORE :"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer3" type="CenterContainer" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,6 +124,7 @@ layout_mode = 2
 text = "0"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(469, 277)
