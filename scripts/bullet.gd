@@ -12,5 +12,5 @@ func _ready():
 	pass
 	
 func _physics_process(delta: float):
-	animation_player.play("fire")
+	#animation_player.play("fire")
 	position += direction.normalized() * SPEED * delta

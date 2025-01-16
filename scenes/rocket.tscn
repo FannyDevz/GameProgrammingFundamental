@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cebdtfks103m3"]
 
 [ext_resource type="Script" path="res://scripts/rocket.gd" id="1_is3ts"]
-[ext_resource type="Texture2D" uid="uid://b2jwfv3jfc0fr" path="res://assets/sprites/bullet.png" id="2_g6vp7"]
+[ext_resource type="Texture2D" uid="uid://hhagmupl6kxt" path="res://assets/kenney_top-down-tanks-redux/PNG/Default size/explosion3.png" id="2_vvbda"]
 
 [sub_resource type="Animation" id="Animation_rxrum"]
 length = 0.001
@@ -42,7 +42,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qst1b"]
-size = Vector2(28, 26)
+size = Vector2(33, 32)
 
 [node name="Rocket" type="Area2D"]
 script = ExtResource("1_is3ts")
@@ -53,14 +53,13 @@ libraries = {
 }
 
 [node name="RocketCollation" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_qst1b")
 
 [node name="RocketSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(0.531916, 0.531916)
-texture = ExtResource("2_g6vp7")
+texture = ExtResource("2_vvbda")
 offset = Vector2(1, 0)
-hframes = 3
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

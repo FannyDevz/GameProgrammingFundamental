@@ -4,6 +4,7 @@ extends Area2D
 @onready var sprite := $Sprite2D
 @onready var direction_change_timer: Timer = $Timer2
 @onready var weapon: Weapon_Enemy = $Weapon_Enemy as Weapon_Enemy
+@onready var enemy_demage_flash: AnimationPlayer = $Sprite2D/EnemyDemageFlash
 
 var player: CharacterBody2D
 
@@ -56,11 +57,13 @@ func _on_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('tank-bullet'):
 		print("damage", area.DAMAGE)
+		enemy_demage_flash.play("flash_enemy")
 		HEALTH_NOW -= area.DAMAGE
 		area.queue_free()
 		
 	if area.is_in_group('tank-rocket'):
 		print("damage", area.DAMAGE)
+		enemy_demage_flash.play("flash_enemy")
 		HEALTH_NOW -= area.DAMAGE
 		area.queue_free()
 

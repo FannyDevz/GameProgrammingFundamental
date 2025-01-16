@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cap7p3memu25t"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_p5byo"]
-[ext_resource type="Texture2D" uid="uid://b2jwfv3jfc0fr" path="res://assets/sprites/bullet.png" id="2_xry8l"]
+[ext_resource type="Texture2D" uid="uid://dhd4okwgb1c1f" path="res://assets/kenney_top-down-tanks-redux/PNG/Default size/barrelRust_top.png" id="2_okor5"]
 
 [sub_resource type="Animation" id="Animation_rxrum"]
 length = 0.001
@@ -41,8 +41,8 @@ _data = {
 "fire": SubResource("Animation_uko4t")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qst1b"]
-size = Vector2(3, 3)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6eupo"]
+radius = 5.0
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_p5byo")
@@ -53,12 +53,12 @@ libraries = {
 }
 
 [node name="BulletCollation" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qst1b")
+shape = SubResource("CircleShape2D_6eupo")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
-position = Vector2(108, 8)
-texture = ExtResource("2_xry8l")
+position = Vector2(44.8, 3.4)
+scale = Vector2(0.414842, 0.414842)
+texture = ExtResource("2_okor5")
 offset = Vector2(-108, -8)
-hframes = 3
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

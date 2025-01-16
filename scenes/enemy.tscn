@@ -1,11 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyyq0sd5u6iq4"]
+[gd_scene load_steps=10 format=3 uid="uid://cyyq0sd5u6iq4"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_qfxyu"]
 [ext_resource type="Texture2D" uid="uid://bcme2g4wcrbdj" path="res://assets/kenney_top-down-tanks-redux/PNG/Default size/tankBody_bigRed.png" id="2_51bod"]
+[ext_resource type="Shader" path="res://shaders/dmg_flash_enemy.gdshader" id="2_ty6ae"]
 [ext_resource type="PackedScene" uid="uid://bsjirm3kc8s08" path="res://scenes/weapon_enemy.tscn" id="3_t4xxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4udy"]
 size = Vector2(48, 47)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wea5e"]
+shader = ExtResource("2_ty6ae")
+shader_parameter/flash_color = Color(1, 1, 1, 0.470588)
+shader_parameter/flash_value = null
+
+[sub_resource type="Animation" id="Animation_cvhw3"]
+resource_name = "flash_enemy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [null, 0.3, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vuoka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gptm3"]
+_data = {
+"RESET": SubResource("Animation_vuoka"),
+"flash_enemy": SubResource("Animation_cvhw3")
+}
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_qfxyu")
@@ -18,8 +60,14 @@ wait_time = 4.18
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wea5e")
 rotation = -6.28318
 texture = ExtResource("2_51bod")
+
+[node name="EnemyDemageFlash" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_gptm3")
+}
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 6.0
