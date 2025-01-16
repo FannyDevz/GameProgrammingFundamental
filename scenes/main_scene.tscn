@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://p1i47qt0bx1n"]
+[gd_scene load_steps=12 format=3 uid="uid://p1i47qt0bx1n"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_aqodb"]
 [ext_resource type="PackedScene" uid="uid://dudlht1ekt6tq" path="res://scenes/tank.tscn" id="2_623uy"]
@@ -33,6 +33,29 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qymlj"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m7w3"]
+bg_color = Color(1, 0.327775, 0.385722, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_aqodb")
 
@@ -53,25 +76,30 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 315.0
-offset_top = 510.0
-offset_right = 648.0
-offset_bottom = 534.0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 346.0
+offset_bottom = 29.0
 theme_override_styles/background = SubResource("StyleBoxFlat_t67tp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jwhgp")
 max_value = 5.0
-value = 3.0
+value = 2.5
 show_percentage = false
 
 [node name="ReloadRocket" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 772.0
-offset_top = 2.0
-offset_right = 948.0
-offset_bottom = 36.0
+offset_left = 13.0
+offset_top = 42.0
+offset_right = 175.0
+offset_bottom = 57.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qymlj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1m7w3")
+value = 50.0
+show_percentage = false
 script = ExtResource("3_ru8mm")
 tank_instance_path = NodePath("../../Tank")
 
 [node name="Health" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 67.0
@@ -79,6 +107,7 @@ offset_bottom = 29.0
 text = "Health :"
 
 [node name="HP" type="Label" parent="CanvasLayer/Health"]
+visible = false
 layout_mode = 0
 offset_left = 63.0
 offset_top = 1.0
@@ -88,10 +117,10 @@ text = "0"
 script = ExtResource("3_ol67s")
 
 [node name="Score" type="Label" parent="CanvasLayer"]
-offset_left = 105.0
-offset_top = 6.0
-offset_right = 157.0
-offset_bottom = 29.0
+offset_left = 883.0
+offset_top = 8.0
+offset_right = 935.0
+offset_bottom = 31.0
 text = "Score :"
 
 [node name="SP" type="Label" parent="CanvasLayer/Score"]
@@ -102,13 +131,6 @@ offset_right = 96.0
 offset_bottom = 24.0
 text = "0"
 script = ExtResource("4_cqcxu")
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 710.0
-offset_top = 7.0
-offset_right = 767.0
-offset_bottom = 37.0
-text = "Rocket"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
