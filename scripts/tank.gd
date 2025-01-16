@@ -20,11 +20,13 @@ signal death_signal(isTrue:bool)
 #@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var demage_flash: AnimationPlayer = $BodySprite/DemageFlash
 @onready var cooldown_timer: Timer = $CoolDown
+@onready var health_bar: ProgressBar = $"../CanvasLayer/HealthBar"
 
 var direction := Vector2.RIGHT
 
 func _ready() -> void:
 	emit_signal("health_signal", HEALTH , HEALTH_NOW)
+	health_bar.value = HEALTH_NOW
 	#start_cooldown()
 	
 
@@ -75,12 +77,16 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		return
 		
 	if area.is_in_group('enemy-bullet'):
-		HEALTH_NOW -= area.DAMAGE 
+		HEALTH_NOW -= area.DAMAGE
+		health_bar.value = HEALTH_NOW
+		HEALTH_NOW -= area.DAMAGE
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
 		area.queue_free()
 		start_cooldown()
 	
 	if area.is_in_group('enemy-body'):
+		HEALTH_NOW -= area.DAMAGE
+		health_bar.value = HEALTH_NOW
 		HEALTH_NOW -= area.DAMAGE 
 		area.HEALTH_NOW -= area.DAMAGE
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
