@@ -6,8 +6,8 @@ const SPEED = 64.0
 const TURN_SPEED = 2
 const ROTATE_SPEED = 20
 const NITRO_SPEED = 130
-var HEALTH:int = 5
-var HEALTH_NOW:int = HEALTH
+var HEALTH = 10
+var HEALTH_NOW = HEALTH
 var cooldown: bool = false
 
 signal health_signal(health:int, healthnow:int)
@@ -79,7 +79,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy-bullet'):
 		HEALTH_NOW -= area.DAMAGE
 		health_bar.value = HEALTH_NOW
-		HEALTH_NOW -= area.DAMAGE
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
 		area.queue_free()
 		start_cooldown()
@@ -87,7 +86,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy-body'):
 		HEALTH_NOW -= area.DAMAGE
 		health_bar.value = HEALTH_NOW
-		HEALTH_NOW -= area.DAMAGE 
 		area.HEALTH_NOW -= area.DAMAGE
 		emit_signal("health_signal" , HEALTH , HEALTH_NOW)
 		#area.queue_free()

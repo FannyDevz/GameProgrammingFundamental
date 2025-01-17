@@ -57,7 +57,8 @@ func _on_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('tank-bullet'):
 		print("damage", area.DAMAGE)
-		enemy_demage_flash.play("flash_enemy")
+		#enemy_demage_flash.position = position
+		#enemy_demage_flash.play("flash_enemy")
 		HEALTH_NOW -= area.DAMAGE
 		area.queue_free()
 		
